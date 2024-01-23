@@ -16,4 +16,5 @@ export default NavBar;
 // HStack => we want to layout our items horizontally
 // webp images are highly optimized images for the web
 // we have to import image like a regular JS module on the top
-//now add this navbar component to our grid in the app component
+//now add this navbar component to our grid in the app component 
+
