@@ -3,9 +3,10 @@ import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 
 // use ts to represent the shape of the response object
-interface Game {
+export interface Game {
     id: number;
     name: string;
+    background_image: string;
   }
   interface FetchGameResponse {
     count: number;
