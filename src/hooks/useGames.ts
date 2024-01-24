@@ -4,7 +4,7 @@ import { CanceledError } from "axios";
 
 // use ts to represent the shape of the response object
 export interface Platform{
-    id: number,
+    id: number;
     name: string;
     slug: string;
 }
@@ -13,7 +13,9 @@ export interface Game {
     name: string;
     background_image: string;
     // parent_platforms is not a Platform array. Its an array of objects where each object has a property called platform of type Platform
-    parent_platforms: {platform : Platform} []
+    parent_platforms: {platform : Platform} [];
+    metacritic: number; 
+
   }
   interface FetchGameResponse {
     count: number;
