@@ -1,16 +1,24 @@
-import useGenres from "../hooks/useGenres"
-
-
+import { HStack, Image, List, ListItem, Text } from "@chakra-ui/react";
+import useGenres from "../hooks/useGenres";
+import getCroppedImageUrl from "../services/image-url";
 
 const GenreList = () => {
-    const {data} = useGenres();
-  return ( 
-    <ul>
-        {data.map(genre => <li key={genre.id}>{genre.name}</li>)}
-    </ul>
-  )
-}
+  const { data } = useGenres();
+  return (
+    <List>
+      {data.map((genre) => (
+        <ListItem key={genre.id} paddingY='5px'>
+          <HStack>
+            <Image boxSize='32px' borderRadius={8} src={getCroppedImageUrl(genre.image_background)}/>
+            <Text fontSize='lg'>{genre.name}</Text>
+          </HStack>
+        </ListItem>
+      ))}
+    </List>
+  );
+};
 
-export default GenreList
-// to fetch genre, create a hook 
+export default GenreList;
+// to fetch genre, create a hook
 // our components should know nothing about making http request
+//List  ===> we can list items without bulletpoints

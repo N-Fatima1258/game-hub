@@ -7,7 +7,7 @@ interface Props{
 
 const GameCardContainer = ({children}: Props) => {
   return (
-<Box  width='230px' borderRadius={10} overflow='hidden'>
+<Box borderRadius={10} overflow='hidden'>
     {children}
 </Box>  )
 }
@@ -15,3 +15,4 @@ const GameCardContainer = ({children}: Props) => {
 export default GameCardContainer
 
 // Box ===> when rendered, it returns a div
+// be default, the width is going to be 100%
