@@ -28,24 +28,33 @@ const useGames = () => {
 // for storing the game object
 const [games, setGames] = useState<Game[]>([]);
 const [error, setError] = useState("");
+ const[isLoading, setLoading] = useState(false);
 
 // to send the fetch request to the backend
 // send the request to the games endpoint
 useEffect(() => {
     // create a acontroller object and set it to the instance of abort constroller
     const controller = new AbortController();
+    setLoading(true)
   apiClient
     .get<FetchGameResponse>("/games", {signal : controller.signal})
-    .then((res) => setGames(res.data.results))
+    .then((res) => {
+      setGames(res.data.results);
+    setLoading(false)
+  })
     .catch((err) => {
         if(err instanceof CanceledError) return;        
-        setError(err.message)});
+        setError(err.message);
+        setLoading(false)
+      
+      });
+        
 
     // cleanup function
     return () => controller.abort();
-}, []);
+}, []);// best way to setLoading is in the finally method
 
-return { games, error}
+return { games, error, isLoading}
 }
 
 export default useGames;
