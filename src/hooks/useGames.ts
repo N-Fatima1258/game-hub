@@ -16,7 +16,12 @@ export interface Game {
     metacritic: number; 
 
   }
-const useGames = (selectedGenre : Genre | null) => useData<Game>('/games', {params: {genres: selectedGenre?.id}}, [selectedGenre?.id])
+const useGames = (selectedGenre : Genre | null, selectedPlatform : Platform | null) => useData<Game>('/games', {
+  params:   {
+    genres: selectedGenre?.id,
+   platforms: selectedPlatform?.id
+  }},
+  [selectedGenre?.id, selectedPlatform?.id])
 
 export default useGames;
 
@@ -28,4 +33,4 @@ export default useGames;
 // params: one of the properties of axios request config object
 // genres: selectedGenre?.id} => if selectedGenre is null , genre would also be null
 // {params: {genres: selectedGenre?.id}}   => pass the selected genre as a query string parameter to the data hook
-// [selectedGenre?.id]==> any of the dependencies changes, our effect will re run and re fetch the data from the server
+// [selectedGenre?.id]==> any of the dependencies changes, our effect (useGames) will re run and re fetch the data from the server
