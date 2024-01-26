@@ -3,9 +3,10 @@ import useGenres, { Genre } from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
 interface Props{
   onSelectGenre : (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-const GenreList = ({onSelectGenre}: Props) => {
+const GenreList = ({selectedGenre, onSelectGenre}: Props) => {
   const { data, isLoading, error } = useGenres();
   if(error) return null;
   if(isLoading) return <Spinner/>;
@@ -15,7 +16,7 @@ const GenreList = ({onSelectGenre}: Props) => {
         <ListItem key={genre.id} paddingY='5px'>
           <HStack>
             <Image boxSize='32px' borderRadius={8} src={getCroppedImageUrl(genre.image_background)}/>
-            <Button onClick={() => onSelectGenre(genre)} fontSize='lg' variant='link'>{genre.name}</Button>
+            <Button fontWeight={genre.id === selectedGenre?.id ? 'bold' : 'normal'} onClick={() => onSelectGenre(genre)} fontSize='lg' variant='link'>{genre.name}</Button>
           </HStack>
         </ListItem>
       ))}
@@ -28,3 +29,4 @@ export default GenreList;
 // our components should know nothing about making http request 
 //List  ===> we can list items without bulletpoints
 // variant = 'link'   ===> so our buttons look like links
+// optional (?) , becz the selected genre can be null
