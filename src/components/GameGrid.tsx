@@ -3,8 +3,16 @@ import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
-const GameGrid = () => {
-  const { data, error, isLoading } = useGames();
+import { Genre } from "../hooks/useGenres";
+
+interface Props{
+  selectedGenre: Genre | null;
+}
+
+
+
+const GameGrid = ({selectedGenre} : Props) => {
+  const { data, error, isLoading } = useGames(selectedGenre);
 
   // we donot need a state variable here becz it is not going to change over time.
   const skeletons = [1, 2, 3, 4, 5, 6];
@@ -18,13 +26,13 @@ const GameGrid = () => {
       >
         {isLoading &&
           skeletons.map((skeleton) => (
-            <GameCardContainer>
-              <GameCardSkeleton key={skeleton} />{" "}
+            <GameCardContainer key={skeleton}>
+              <GameCardSkeleton />{" "}
             </GameCardContainer>
           ))}
         {data.map((game) => (
-          <GameCardContainer>
-            <GameCard key={game.id} game={game} />
+          <GameCardContainer key={game.id}>
+            <GameCard game={game} />
           </GameCardContainer>
         ))}
       </SimpleGrid>

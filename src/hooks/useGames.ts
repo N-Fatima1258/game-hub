@@ -1,4 +1,5 @@
 import useData from "./useData";
+import { Genre } from "./useGenres";
 
 // use ts to represent the shape of the response object
 export interface Platform{
@@ -15,7 +16,7 @@ export interface Game {
     metacritic: number; 
 
   }
-const useGames = () => useData<Game>('/games')
+const useGames = (selectedGenre : Genre | null) => useData<Game>('/games', {params: {genres: selectedGenre?.id}}, [selectedGenre?.id])
 
 export default useGames;
 
@@ -23,3 +24,8 @@ export default useGames;
 
 // without array of dependencies in the effectHook, we cannot send a request to our backend
 // network tab > for the working of canceled request
+
+// params: one of the properties of axios request config object
+// genres: selectedGenre?.id} => if selectedGenre is null , genre would also be null
+// {params: {genres: selectedGenre?.id}}   => pass the selected genre as a query string parameter to the data hook
+// [selectedGenre?.id]==> any of the dependencies changes, our effect will re run and re fetch the data from the server
