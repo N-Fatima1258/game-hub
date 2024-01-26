@@ -1,4 +1,5 @@
 const getCroppedImageUrl = (url: string) => {
+    if(!url) return '';
 //  here we should find the index of the word media followed by the / in our URL
 // url.indexOf('media/')  ==>  represents the starting position of media parameter
 const target = 'media/'
