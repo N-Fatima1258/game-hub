@@ -15,7 +15,8 @@ export interface Game {
     // parent_platforms is not a Platform array. Its an array of objects where each object has a property called platform of type Platform
     parent_platforms: {platform : Platform} [];
     metacritic: number; 
-
+    rating_top: number; // whole number
+ 
   }
 const useGames = (gameQuery: GameQuery) => useData<Game>('/games', {
   params:   {
