@@ -1,5 +1,4 @@
-
-import useData from "./useData";
+import genres from "../data/genres";
 
 export interface Genre {
     id: number;
@@ -7,7 +6,7 @@ export interface Genre {
     image_background: string;
 }
 
-const useGenres = () => useData<Genre>('/genres')
+const useGenres = () => ({data: genres, isLoading: false, error: null})
 export default useGenres;
 
-// useData<Genre>('/genres') =======> pass Genre as our generic type argument
+// set the data property to the genres we have stored in the genres modules

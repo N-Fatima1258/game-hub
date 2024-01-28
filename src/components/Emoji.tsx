@@ -13,9 +13,9 @@ const Emoji = ({ rating }: Props) => {
   // keys are numbers that represent the rating of the game
   // this object can have any number of keys and the keys are numbers ,,, now map each key to an image props defined in chakra
   const emojiMap: { [key: number]: ImageProps } = {
-    3: { src: meh, alt: "meh", boxSize: '25px' },
-    4: { src: thumbsUp, alt: "recommended", boxSize: '25px' },
-    5: { src: bullsEye, alt: "exceptional", boxSize: '35px'},
+    3: { src: meh, alt: "meh", boxSize: "25px" },
+    4: { src: thumbsUp, alt: "recommended", boxSize: "25px" },
+    5: { src: bullsEye, alt: "exceptional", boxSize: "35px" },
   };
   return <Image {...emojiMap[rating]} marginTop={1} />;
 };
